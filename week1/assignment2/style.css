@@ -33,7 +33,6 @@ main {
 .top_section input {
   width: 250px;
   height: 35px;
-  background-color: rgba(255, 255, 255, 0.5);
   border-style: none;
   border-radius: 10px;
   margin: 0 10px;
@@ -51,7 +50,6 @@ main {
   border-radius: 50%;
   border-style: none;
   font-size: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   cursor: pointer;
 }
@@ -64,7 +62,6 @@ main {
   width: 250px;
   height: 35px;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.5);
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -87,7 +84,6 @@ main {
   height: 25px;
   border-radius: 50%;
   border-style: none;
-  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   cursor: pointer;
 }
@@ -104,4 +100,12 @@ main {
   50% {
     transform: scale(0.95);
   }
+}
+
+.transparent-white {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.transparent-black {
+  background-color: rgba(0, 0, 0, 0.5);
 }
