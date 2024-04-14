@@ -95,7 +95,7 @@ footer {
   margin-top: -80px;
 }
 
-.box_warpped {
+.box_wrapped {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
