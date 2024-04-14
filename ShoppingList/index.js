@@ -15,7 +15,7 @@ function createItem(item) {
             <img src="${item.imageUrl}" />
             <p class="wish_btn">♥</p>
             <p class="item_name">${item.itemName}</p>
-            <p class="item_price">${item.itemPrice}</p>
+            <p class="item_price">${item.itemPrice}원</p>
           `;
   return wishBox;
 }
