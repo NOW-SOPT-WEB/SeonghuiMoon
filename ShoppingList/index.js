@@ -9,15 +9,15 @@ const navLinks = document.querySelectorAll("nav ul li a");
 const boxWrapped = document.querySelector(".box_wrapped");
 
 function createItem(item) {
-  const wishBox = document.createElement("div");
-  wishBox.classList.add("wish_box");
-  wishBox.innerHTML = `
-            <img src="${item.imageUrl}" />
+  const itemBox = document.createElement("div");
+  itemBox.classList.add("item_box");
+  itemBox.innerHTML = `
+            <img src="${item.imageUrl}" alt="${item.itemName}" />
             <p class="wish_btn">♥</p>
             <p class="item_name">${item.itemName}</p>
             <p class="item_price">${item.itemPrice}원</p>
           `;
-  return wishBox;
+  return itemBox;
 }
 
 function displayItems(category) {
@@ -33,9 +33,23 @@ navLinks.forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
     const category = e.target.dataset.type;
-    console.log(category);
     displayItems(category);
   });
 });
 
 displayItems("all");
+
+const bannerWrapped = document.querySelector(".banner_wrapped");
+
+itemsData.forEach((item) => {
+  const img = document.createElement("img");
+  img.src = item.imageUrl;
+  img.alt = item.itemName;
+  img.classList.add("banner_item");
+  bannerWrapped.appendChild(img);
+});
+
+bannerWrapped.addEventListener("animationiteration", () => {
+  bannerWrapped.appendChild(bannerWrapped.firstChild.cloneNode(true));
+  bannerWrapped.removeChild(bannerWrapped.firstChild);
+});
