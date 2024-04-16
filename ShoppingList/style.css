@@ -225,3 +225,10 @@ footer {
   font-size: 2.5rem;
   cursor: pointer;
 }
+
+.sideNav ul li:hover {
+  background-color: #ccff9c;
+  color: white;
+  font-weight: bold;
+  text-shadow: rgb(20, 224, 81) 1px 0 5px;
+}
