@@ -25,7 +25,7 @@ function displayItems(category) {
 
 displayItems("all");
 
-const navLinks = document.querySelectorAll("nav ul li a");
+const navLinks = document.querySelectorAll(".floatNav ul li a");
 navLinks.forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
