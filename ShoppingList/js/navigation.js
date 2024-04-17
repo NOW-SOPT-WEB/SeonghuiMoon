@@ -15,3 +15,9 @@ menubarBtn.addEventListener("click", function () {
 closeBtn.addEventListener("click", function () {
   sideNav.classList.remove("open");
 });
+
+const toHomeBtn = document.querySelector(".toHomeBtn");
+toHomeBtn.addEventListener("click", () => {
+  window.location.href =
+    "http://127.0.0.1:5500/ShoppingList/pages/mainPage.html";
+});
