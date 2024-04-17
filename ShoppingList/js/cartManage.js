@@ -1,26 +1,32 @@
-const itemBoxBtn = document.querySelector(".box_wrapped");
-itemBoxBtn.addEventListener("click", function (event) {
-  let target = event.target;
-  while (target && !target.classList.contains("item_box")) {
-    target = target.parentNode;
-  }
+import { itemsData } from "/ShoppingList/assets/data/itemData.js";
 
-  if (target && target.classList.contains("item_box")) {
-    const itemId = target.getAttribute("data-id");
+const tableBody = document.querySelector("table tbody");
 
-    if (confirm("장바구니에 추가하시겠습니까?")) {
-      let cart = localStorage.getItem("cart");
-      cart = cart ? JSON.parse(cart) : [];
+function loadCartItems() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      if (!cart.includes(itemId)) {
-        cart.push(itemId);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        alert("추가되었습니다.");
-      } else {
-        alert("이미 장바구니에 추가된 아이템입니다.");
-      }
-    } else {
-      alert("취소되었습니다.");
+  cart.forEach((itemId) => {
+    const item = itemsData.find((item) => item.id === parseInt(itemId));
+    if (item) {
+      const row = tableBody.insertRow();
+      row.innerHTML = `
+            <td><input type="checkbox" name="cartItem" value="${item.id}"></td>
+            <td><img src="${item.imageUrl}" alt="${item.itemName}"></td>
+            <td><span>${item.itemName}</span></td>
+            <td>${item.itemPrice}원</td>
+            <td>${item.type}</td>
+            <td><button onclick="removeItem(${item.id})">삭제</button></td>
+          `;
     }
-  }
-});
+  });
+}
+
+function removeItem(itemId) {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const newCart = cart.filter((id) => parseInt(id) !== itemId);
+  localStorage.setItem("cart", JSON.stringify(newCart));
+  location.reload();
+}
+
+window.removeItem = removeItem;
+loadCartItems();
