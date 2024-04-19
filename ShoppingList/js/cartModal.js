@@ -39,9 +39,13 @@ document.body.addEventListener("click", function (event) {
     const checkedItems = document.querySelectorAll(
       'input[name="cartItem"]:checked'
     );
+    checkedItems.length ? alert("구매 완료") : alert("구매할 상품이 없습니다.");
     checkedItems.forEach((item) => {
       removeItem(parseInt(item.value));
     });
+
+    const modalItems = document.querySelector(".modalItems");
+    modalItems.innerHTML = "";
     document.querySelector(".purchaseModal").style.display = "none";
   }
 });

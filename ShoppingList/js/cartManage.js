@@ -43,3 +43,9 @@ allCheckBtn.addEventListener("click", function () {
     item.checked = isChecked;
   });
 });
+
+const toHomeBtn = document.querySelector(".toHomeBtn");
+toHomeBtn.addEventListener("click", () => {
+  window.location.href =
+    "http://127.0.0.1:5500/ShoppingList/pages/mainPage.html";
+});
