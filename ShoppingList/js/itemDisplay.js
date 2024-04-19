@@ -14,8 +14,8 @@ function createItem(item) {
   return itemBox;
 }
 
-const boxWrapped = document.querySelector(".box_wrapped");
 function displayItems(category) {
+  const boxWrapped = document.querySelector(".box_wrapped");
   boxWrapped.innerHTML = "";
   itemsData
     .filter((item) => category === "all" || item.type === category)

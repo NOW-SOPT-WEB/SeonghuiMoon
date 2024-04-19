@@ -24,13 +24,3 @@ itemBoxBtn.addEventListener("click", function (event) {
     }
   }
 });
-
-// function updateWishUI(itemId, wish) {
-//   const itemElement = document.querySelector(`[data-id="${itemId}"]`);
-//   const wishBtn = itemElement.querySelector(".wish_btn");
-//   if (wish) {
-//     wishBtn.classList.add("wished");
-//   } else {
-//     wishBtn.classList.remove("wished");
-//   }
-// }

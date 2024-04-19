@@ -1,10 +1,9 @@
 import { itemsData } from "/ShoppingList/assets/data/itemData.js";
 import { getComma } from "../utils/getComma.js";
 
-const tableBody = document.querySelector("table tbody");
-
 function loadCartItems() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const tableBody = document.querySelector("table tbody");
 
   cart.forEach((itemId) => {
     const item = itemsData.find((item) => item.id === parseInt(itemId));
