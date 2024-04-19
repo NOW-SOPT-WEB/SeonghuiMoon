@@ -1,6 +1,12 @@
 import { itemsData } from "/ShoppingList/assets/data/itemData.js";
 import { getComma } from "../utils/getComma.js";
 
+const toHomeBtn = document.querySelector(".toHomeBtn");
+toHomeBtn.addEventListener("click", () => {
+  window.location.href =
+    "http://127.0.0.1:5500/ShoppingList/pages/mainPage.html";
+});
+
 function loadCartItems() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const tableBody = document.querySelector("table tbody");
@@ -10,11 +16,9 @@ function loadCartItems() {
     if (item) {
       const row = tableBody.insertRow();
       row.innerHTML = `
-            <td><input type="checkbox" class="chkbox" name="cartItem" value="${
-              item.id
-            }"></td>
+            <td><input type="checkbox" class="chkbox" value="${item.id}"></td>
             <td><img src="${item.imageUrl}" alt="${item.itemName}"></td>
-            <td><span>${item.itemName}</span></td>
+            <td>${item.itemName}</td>
             <td>${getComma(parseInt(item.itemPrice))}원</td>
             <td>${item.type}</td>
             <td><button onclick="removeItem(${item.id})">삭제</button></td>
@@ -35,16 +39,10 @@ loadCartItems();
 
 const allCheckBtn = document.querySelector(".allCheckBtn");
 allCheckBtn.addEventListener("click", function () {
-  const cartItems = document.querySelectorAll('input[name="cartItem"]');
+  const cartItems = document.querySelectorAll('input[class="chkbox"]');
 
   const isChecked = allCheckBtn.checked;
   cartItems.forEach((item) => {
     item.checked = isChecked;
   });
-});
-
-const toHomeBtn = document.querySelector(".toHomeBtn");
-toHomeBtn.addEventListener("click", () => {
-  window.location.href =
-    "http://127.0.0.1:5500/ShoppingList/pages/mainPage.html";
 });
