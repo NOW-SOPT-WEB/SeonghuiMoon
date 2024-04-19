@@ -76,3 +76,76 @@ th {
 .toHomeBtn {
   background-color: #ccff9c;
 }
+
+.purchaseModal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modalContent {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 30px;
+  width: 50%;
+  height: auto;
+}
+.closeModalBtn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.closeModalBtn:hover,
+.closeModalBtn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.purchaseModal img {
+  width: 80px;
+}
+
+.modalItems {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.modalItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+.modalItem img {
+  margin: 1.3rem;
+}
+
+.modalItem p {
+  margin: 0.2rem;
+}
+
+.modalContent button {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.totalPrice {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background: rgb(183, 218, 250);
+  border-radius: 8px;
+  margin-left: auto;
+}
