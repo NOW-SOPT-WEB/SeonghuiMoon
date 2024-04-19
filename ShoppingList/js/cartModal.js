@@ -6,7 +6,6 @@ purchaseBtn.addEventListener("click", () => {
     'input[name="cartItem"]:checked'
   );
   const modalItems = document.querySelector(".modalItems");
-  const modalContent = document.querySelector(".modalContent");
   let totalPrice = 0;
 
   checkedItems.forEach((checkbox) => {
