@@ -1,4 +1,5 @@
 import { itemsData } from "/ShoppingList/assets/data/itemData.js";
+import { getComma } from "../utils/getComma.js";
 
 const purchaseBtn = document.querySelector(".purchaseBtn");
 purchaseBtn.addEventListener("click", () => {
@@ -16,13 +17,15 @@ purchaseBtn.addEventListener("click", () => {
       <div class="modalItem">
         <img src="${item.imageUrl}" alt="${item.itemName}" />
         <p class="item_name">${item.itemName}</p>
-        <p class="item_price">${item.itemPrice}원</p>
+        <p class="item_price">${getComma(parseInt(item.itemPrice))}원</p>
         </div>
       `;
       totalPrice += parseInt(item.itemPrice);
     }
   });
-  modalItems.innerHTML += `<div class="totalPrice">총금액: ${totalPrice}원</div>`;
+  modalItems.innerHTML += `<div class="totalPrice">총금액: ${getComma(
+    totalPrice
+  )}원</div>`;
   document.querySelector(".purchaseModal").style.display = "block";
 });
 

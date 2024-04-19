@@ -1,4 +1,5 @@
 import { itemsData } from "/ShoppingList/assets/data/itemData.js";
+import { getComma } from "../utils/getComma.js";
 
 const tableBody = document.querySelector("table tbody");
 
@@ -10,10 +11,12 @@ function loadCartItems() {
     if (item) {
       const row = tableBody.insertRow();
       row.innerHTML = `
-            <td><input type="checkbox" class="chkbox" name="cartItem" value="${item.id}"></td>
+            <td><input type="checkbox" class="chkbox" name="cartItem" value="${
+              item.id
+            }"></td>
             <td><img src="${item.imageUrl}" alt="${item.itemName}"></td>
             <td><span>${item.itemName}</span></td>
-            <td>${item.itemPrice}원</td>
+            <td>${getComma(parseInt(item.itemPrice))}원</td>
             <td>${item.type}</td>
             <td><button onclick="removeItem(${item.id})">삭제</button></td>
           `;
