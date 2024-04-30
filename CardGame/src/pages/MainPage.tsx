@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import HeaderContainer from "@/components/HeaderContainer";
 import CardgameContainer from "@/components/Card/CardGameContainer";
 import Button from "@/components/button/Button";
+import Modal from "@/components/modal/Modal";
 
 const MainPage = () => {
   const [numPairs, setNumPairs] = useState(5);
   const handleButtonClick = (pairs: number) => {
     setNumPairs(pairs);
+    setScore(0);
   };
   const [score, setScore] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (score === numPairs) {
+      setShowModal(true);
+    }
+  }, [score, numPairs]);
 
   return (
     <MainPageStyled>
@@ -32,6 +41,12 @@ const MainPage = () => {
         />
       </BtnWrapper>
       <CardgameContainer numPairs={numPairs} setScore={setScore} />
+      {showModal && (
+        <Modal
+          onClose={() => setShowModal(false)}
+          modalText="게임을 클리어하였습니다!"
+        />
+      )}
     </MainPageStyled>
   );
 };
