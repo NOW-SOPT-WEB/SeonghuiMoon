@@ -13,14 +13,17 @@ itemBoxBtn.addEventListener("click", function (event) {
 
     if (cart.includes(itemId)) {
       alert("이미 장바구니에 추가된 아이템입니다.");
-    } else {
-      if (confirm("장바구니에 추가하시겠습니까?")) {
-        cart.push(itemId);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        alert("추가되었습니다.");
-      } else {
-        alert("취소되었습니다.");
-      }
+      return;
     }
+
+    const isConfirmed = confirm("장바구니에 추가하시겠습니까?");
+    if (!isConfirmed) {
+      alert("취소되었습니다.");
+      return;
+    }
+
+    cart.push(itemId);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("추가되었습니다.");
   }
 });
