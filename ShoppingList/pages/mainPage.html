@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/ShoppingList/styles/commonStyle.css" />
+    <link rel="stylesheet" href="/ShoppingList/styles/mainStyle.css" />
+    <title>shopping list</title>
+  </head>
+  <body>
+    <header class="main_header">
+      <img src="/ShoppingList/assets/images/emoji2.png" class="homeBtn" />
+      <h1>성희의 쇼핑몰</h1>
+      <img
+        src="/ShoppingList/assets/images/Hamburger_icon.svg"
+        class="menubarBtn"
+      />
+    </header>
+    <main>
+      <nav class="sideNav">
+        <button class="closeBtn">➡️</button>
+        <ul>
+          <li><a>관심 상품 목록</a></li>
+          <li><a>관리자 페이지</a></li>
+          <li><a href="cartPage.html">장바구니</a></li>
+        </ul>
+      </nav>
+      <nav class="floatNav">
+        <h2>판매목록</h2>
+        <ul>
+          <li><a href="#" data-type="all" class="cateBtn">전체</a></li>
+          <li><a href="#" data-type="books" class="cateBtn">도서</a></li>
+          <li><a href="#" data-type="games" class="cateBtn">게임</a></li>
+          <li><a href="#" data-type="others" class="cateBtn">기타</a></li>
+        </ul>
+      </nav>
+      <div class="main_section">
+        <div class="banner">
+          <div class="banner_wrapped"></div>
+        </div>
+        <section class="section_class">
+          <article class="box_wrapped"></article>
+        </section>
+      </div>
+    </main>
+    <footer>화이팅 해야지</footer>
+  </body>
+  <script type="module" src="/ShoppingList/js/bannerAni.js"></script>
+  <script type="module" src="/ShoppingList/js/cartAdd.js"></script>
+  <script type="module" src="/ShoppingList/js/itemDisplay.js"></script>
+  <script type="module" src="/ShoppingList/js/navigation.js"></script>
+</html>
