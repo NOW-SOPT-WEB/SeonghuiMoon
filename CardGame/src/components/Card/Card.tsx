@@ -8,7 +8,7 @@ interface CardInterface {
 
 const Card = ({ id, imgSrc, onClickCard }: CardInterface) => {
   return (
-    <CardStyled id={id} imgSrc={imgSrc} onClick={onClickCard}></CardStyled>
+    <CardStyled id={id} $imgSrc={imgSrc} onClick={onClickCard}></CardStyled>
   );
 };
 
@@ -18,7 +18,7 @@ const CardStyled = styled.div`
   background-color: white;
   border-radius: 0.5rem;
   border: 1px solid black;
-  background-image: url(${(props) => props.imgSrc});
+  background-image: url(${(props) => props.$imgSrc});
   background-size: cover;
   background-position: center;
 `;

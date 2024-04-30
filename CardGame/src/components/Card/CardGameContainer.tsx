@@ -1,5 +1,8 @@
-import CardGame from "@/components/Card/CardGame";
 import { useState, useEffect } from "react";
+import { styled } from "styled-components";
+import { imageData } from "@/assets/data/imageData";
+import Card from "@/components/Card/Card";
+import BasicImg from "@/assets/images/basicMaru.webp";
 
 interface CardgameContainerInterface {
   numPairs: number;
@@ -9,38 +12,81 @@ interface CardgameContainerInterface {
 interface CardType {
   id: number;
   imgSrc: string;
+  pairId: number;
 }
 
 const CardgameContainer = ({
   numPairs,
   setScore,
 }: CardgameContainerInterface) => {
-  const images = Array.from(
-    { length: 9 },
-    (_, i) => `/src/assets/images/maru${i + 1}.png`
-  );
+  const [openedCards, setOpenedCards] = useState<number[]>([]);
+  const [matchedCards, setMatchedCards] = useState<number[]>([]);
+  const [cards, setCards] = useState<CardType[]>([]);
 
-  const selectedImages: string[] = [];
-  while (selectedImages.length < numPairs) {
-    const index = Math.floor(Math.random() * images.length);
-    const imgSrc = images[index];
-    if (!selectedImages.includes(imgSrc)) {
-      selectedImages.push(imgSrc);
+  useEffect(() => {
+    const selectedImages = imageData
+      .sort(() => 0.5 - Math.random())
+      .slice(0, numPairs);
+
+    const shuffledCards: CardType[] = selectedImages
+      .flatMap((image) => [
+        { id: image.id * 2, imgSrc: image.imgSrc, pairId: image.id },
+        { id: image.id * 2 + 1, imgSrc: image.imgSrc, pairId: image.id },
+      ])
+      .sort(() => Math.random() - 0.5);
+
+    setCards(shuffledCards);
+  }, [numPairs]);
+
+  const isFlipped = (cardId: number) => {
+    return openedCards.includes(cardId) || matchedCards.includes(cardId);
+  };
+
+  const onClickCard = (cardId: number) => {
+    if (matchedCards.includes(cardId) || openedCards.includes(cardId)) {
+      return;
     }
-  }
+    console.log(cardId);
+    if (openedCards.length === 0) {
+      setOpenedCards([cardId]);
+    } else if (openedCards.length === 1) {
+      const firstCardId = openedCards[0];
+      const firstCard = cards.find((card) => card.id === firstCardId);
+      const currentCard = cards.find((card) => card.id === cardId);
 
-  const cards: CardType[] = selectedImages.reduce(
-    (acc: CardType[], imgSrc: string, index: number) => [
-      ...acc,
-      { id: index * 2, imgSrc },
-      { id: index * 2 + 1, imgSrc },
-    ],
-    []
+      if (firstCard && currentCard && firstCard.pairId === currentCard.pairId) {
+        setMatchedCards([...matchedCards, firstCardId, cardId]);
+        setScore((prevScore) => prevScore + 1);
+        setOpenedCards([]);
+      } else {
+        setOpenedCards([...openedCards, cardId]);
+        setTimeout(() => {
+          setOpenedCards([]);
+        }, 1000);
+      }
+    }
+  };
+
+  return (
+    <CardGameStyled>
+      {cards.map((card) => (
+        <Card
+          id={card.id}
+          imgSrc={isFlipped(card.id) ? card.imgSrc : BasicImg}
+          onClickCard={() => onClickCard(card.id)}
+          key={card.id}
+        />
+      ))}
+    </CardGameStyled>
   );
-
-  cards.sort(() => Math.random() - 0.5);
-
-  return <CardGame cards={cards}></CardGame>;
 };
 
+const CardGameStyled = styled.div`
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+`;
 export default CardgameContainer;
