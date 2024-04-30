@@ -28,12 +28,12 @@ purchaseBtn.addEventListener("click", () => {
   modalItems.innerHTML += `<div class="totalPrice">총금액: ${getComma(
     totalPrice
   )}원</div>`;
-  document.querySelector(".purchaseModal").style.display = "block";
+  document.querySelector(".purchaseModal").classList.remove("hidden");
 });
 
 document.body.addEventListener("click", function (event) {
   if (event.target.classList.contains("closeModalBtn")) {
-    document.querySelector(".purchaseModal").style.display = "none";
+    document.querySelector(".purchaseModal").classList.add("hidden");
   }
   if (event.target.classList.contains("confirmBtn")) {
     const checkedItems = document.querySelectorAll(
@@ -43,6 +43,6 @@ document.body.addEventListener("click", function (event) {
     checkedItems.forEach((item) => {
       removeItem(parseInt(item.value));
     });
-    document.querySelector(".purchaseModal").style.display = "none";
+    document.querySelector(".purchaseModal").classList.add("hidden");
   }
 });

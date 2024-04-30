@@ -78,7 +78,6 @@ th {
 }
 
 .purchaseModal {
-  display: none;
   position: fixed;
   left: 0;
   top: 0;
@@ -148,4 +147,8 @@ th {
   background: rgb(183, 218, 250);
   border-radius: 8px;
   margin-left: auto;
+}
+
+.hidden {
+  display: none;
 }
