@@ -10,6 +10,7 @@ itemsData.forEach((item) => {
 });
 
 bannerWrapped.addEventListener("animationiteration", () => {
-  bannerWrapped.appendChild(bannerWrapped.firstChild.cloneNode(true));
-  bannerWrapped.removeChild(bannerWrapped.firstChild);
+  const firstChild = bannerWrapped.firstElementChild;
+  bannerWrapped.appendChild(firstChild);
+  // bannerWrapped.removeChild(bannerWrapped.firstChild);
 });
