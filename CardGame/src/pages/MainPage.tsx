@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { styled } from "styled-components";
-import Header from "@/components/Header";
+import Header from "@/components/header/Header";
 import CardgameContainer from "@/components/Card/CardGameContainer";
 import Button from "@/components/button/Button";
 import Modal from "@/components/modal/Modal";
@@ -11,10 +11,12 @@ import {
 } from "@/constants/gameDifficulty";
 
 const MainPage = () => {
-  const [numPairs, setNumPairs] = useState(GAME_DIFFICULTY_EASY);
-  const [reset, setReset] = useState(false);
-  const [score, setScore] = useState(0);
-  const [showModal, setShowModal] = useState(false);
+  const [numPairs, setNumPairs] = useState<number>(GAME_DIFFICULTY_EASY);
+  const [reset, setReset] = useState<boolean>(false);
+  const [score, setScore] = useState<number>(0);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [clickedButton, setClickedButton] =
+    useState<number>(GAME_DIFFICULTY_EASY);
 
   useEffect(() => {
     if (score === numPairs) {
@@ -29,6 +31,7 @@ const MainPage = () => {
 
   const onClickNum = (pairs: number) => {
     setNumPairs(pairs);
+    setClickedButton(pairs);
     handleReset();
   };
 
@@ -45,16 +48,19 @@ const MainPage = () => {
           text="Easy"
           color="var(--sub-color)"
           onClick={() => onClickNum(GAME_DIFFICULTY_EASY)}
+          isClicked={clickedButton === GAME_DIFFICULTY_EASY}
         />
         <Button
           text="Normal"
           color="var(--sub-color)"
           onClick={() => onClickNum(GAME_DIFFICULTY_NORMAL)}
+          isClicked={clickedButton === GAME_DIFFICULTY_NORMAL}
         />
         <Button
           text="Hard"
           color="var(--sub-color)"
           onClick={() => onClickNum(GAME_DIFFICULTY_HARD)}
+          isClicked={clickedButton === GAME_DIFFICULTY_HARD}
         />
       </BtnWrapper>
       <CardgameContainer

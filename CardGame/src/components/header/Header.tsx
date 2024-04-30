@@ -17,7 +17,11 @@ const Header = ({ score, numPairs, onClickReset }: HeaderInterface) => {
         </ScoreStyled>
       </TitleBoxStyled>
       <BtnWrapper>
-        <Button text="Reset" color="var(--sub-color)" onClick={onClickReset} />
+        <Button
+          text="Reset"
+          color="var(--point-color)"
+          onClick={onClickReset}
+        />
       </BtnWrapper>
     </HearderStyled>
   );
