@@ -1,6 +1,6 @@
 import { itemsData } from "/ShoppingList/assets/data/itemData.js";
 import { getComma } from "../utils/getComma.js";
-import { HOME_PAGE_URL } from "../const/const.js";
+import { HOME_PAGE_URL } from "../constant/const.js";
 
 const toHomeBtn = document.querySelector(".toHomeBtn");
 toHomeBtn.addEventListener("click", () => {
@@ -9,7 +9,7 @@ toHomeBtn.addEventListener("click", () => {
 
 function loadCartItems() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const tableBody = document.querySelector("table tbody");
+  const tableBody = document.querySelector(".cartInfo");
 
   cart.forEach((itemId) => {
     const item = itemsData.find((item) => item.id === parseInt(itemId));

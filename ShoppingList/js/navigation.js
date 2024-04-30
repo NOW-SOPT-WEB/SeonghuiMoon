@@ -1,4 +1,4 @@
-import { HOME_PAGE_URL } from "../const/const.js";
+import { HOME_PAGE_URL } from "../constant/const.js";
 
 const homeBtn = document.querySelector(".homeBtn");
 homeBtn.addEventListener("click", () => {
