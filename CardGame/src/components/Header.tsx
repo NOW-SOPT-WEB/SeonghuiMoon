@@ -2,12 +2,12 @@ import { styled } from "styled-components";
 import Button from "@/components/button/Button";
 
 interface HeaderInterface {
-  onClickResetBtn: () => void;
   score: number;
   numPairs: number;
+  onClickReset: () => void;
 }
 
-const Header = ({ onClickResetBtn, score, numPairs }: HeaderInterface) => {
+const Header = ({ score, numPairs, onClickReset }: HeaderInterface) => {
   return (
     <HearderStyled>
       <TitleBoxStyled>
@@ -17,11 +17,7 @@ const Header = ({ onClickResetBtn, score, numPairs }: HeaderInterface) => {
         </ScoreStyled>
       </TitleBoxStyled>
       <BtnWrapper>
-        <Button
-          text="Reset"
-          color="var(--sub-color)"
-          onClick={onClickResetBtn}
-        />
+        <Button text="Reset" color="var(--sub-color)" onClick={onClickReset} />
       </BtnWrapper>
     </HearderStyled>
   );

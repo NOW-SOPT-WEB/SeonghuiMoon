@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
 import { styled } from "styled-components";
-import HeaderContainer from "@/components/HeaderContainer";
+import Header from "@/components/Header";
 import CardgameContainer from "@/components/Card/CardGameContainer";
 import Button from "@/components/button/Button";
 import Modal from "@/components/modal/Modal";
 
 const MainPage = () => {
   const [numPairs, setNumPairs] = useState(5);
-  const handleButtonClick = (pairs: number) => {
-    setNumPairs(pairs);
-    setScore(0);
-  };
+  const [reset, setReset] = useState(false);
   const [score, setScore] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
@@ -20,32 +17,48 @@ const MainPage = () => {
     }
   }, [score, numPairs]);
 
+  const handleReset = () => {
+    setScore(0);
+    setReset((prev) => !prev);
+  };
+
+  const onClickNum = (pairs: number) => {
+    setNumPairs(pairs);
+    handleReset();
+  };
+
+  const CloseModal = () => {
+    setShowModal(false);
+    handleReset();
+  };
+
   return (
     <MainPageStyled>
-      <HeaderContainer score={score} numPairs={numPairs} />
+      <Header score={score} numPairs={numPairs} onClickReset={handleReset} />
       <BtnWrapper>
         <Button
           text="Easy"
           color="var(--sub-color)"
-          onClick={() => handleButtonClick(5)}
+          onClick={() => onClickNum(5)}
         />
         <Button
           text="Normal"
           color="var(--sub-color)"
-          onClick={() => handleButtonClick(7)}
+          onClick={() => onClickNum(7)}
         />
         <Button
           text="Hard"
           color="var(--sub-color)"
-          onClick={() => handleButtonClick(9)}
+          onClick={() => onClickNum(9)}
         />
       </BtnWrapper>
-      <CardgameContainer numPairs={numPairs} setScore={setScore} />
+      <CardgameContainer
+        numPairs={numPairs}
+        setScore={setScore}
+        reset={reset}
+      />
       {showModal && (
-        <Modal
-          onClose={() => setShowModal(false)}
-          modalText="게임을 클리어하였습니다!"
-        />
+        <Modal onClose={CloseModal} modalText="게임을 클리어하였습니다!" />
       )}
     </MainPageStyled>
   );

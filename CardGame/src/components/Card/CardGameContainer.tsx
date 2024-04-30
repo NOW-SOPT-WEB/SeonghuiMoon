@@ -7,6 +7,7 @@ import BasicImg from "@/assets/images/basicMaru.webp";
 interface CardgameContainerInterface {
   numPairs: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
+  reset: boolean;
 }
 
 interface CardType {
@@ -18,17 +19,22 @@ interface CardType {
 const CardgameContainer = ({
   numPairs,
   setScore,
+  reset,
 }: CardgameContainerInterface) => {
   const [openedCards, setOpenedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [cards, setCards] = useState<CardType[]>([]);
 
   useEffect(() => {
+    initCards();
+  }, [numPairs, reset]);
+
+  const initCards = () => {
     const selectedImages = imageData
       .sort(() => 0.5 - Math.random())
       .slice(0, numPairs);
 
-    const shuffledCards: CardType[] = selectedImages
+    const shuffledCards = selectedImages
       .flatMap((image) => [
         { id: image.id * 2, imgSrc: image.imgSrc, pairId: image.id },
         { id: image.id * 2 + 1, imgSrc: image.imgSrc, pairId: image.id },
@@ -36,7 +42,9 @@ const CardgameContainer = ({
       .sort(() => Math.random() - 0.5);
 
     setCards(shuffledCards);
-  }, [numPairs]);
+    setOpenedCards([]);
+    setMatchedCards([]);
+  };
 
   const isFlipped = (cardId: number) => {
     return openedCards.includes(cardId) || matchedCards.includes(cardId);
@@ -46,7 +54,6 @@ const CardgameContainer = ({
     if (matchedCards.includes(cardId) || openedCards.includes(cardId)) {
       return;
     }
-    console.log(cardId);
     if (openedCards.length === 0) {
       setOpenedCards([cardId]);
     } else if (openedCards.length === 1) {
