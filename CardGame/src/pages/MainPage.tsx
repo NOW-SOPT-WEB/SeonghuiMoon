@@ -4,9 +4,14 @@ import Header from "@/components/Header";
 import CardgameContainer from "@/components/Card/CardGameContainer";
 import Button from "@/components/button/Button";
 import Modal from "@/components/modal/Modal";
+import {
+  GAME_DIFFICULTY_EASY,
+  GAME_DIFFICULTY_NORMAL,
+  GAME_DIFFICULTY_HARD,
+} from "@/constants/gameDifficulty";
 
 const MainPage = () => {
-  const [numPairs, setNumPairs] = useState(5);
+  const [numPairs, setNumPairs] = useState(GAME_DIFFICULTY_EASY);
   const [reset, setReset] = useState(false);
   const [score, setScore] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -39,17 +44,17 @@ const MainPage = () => {
         <Button
           text="Easy"
           color="var(--sub-color)"
-          onClick={() => onClickNum(5)}
+          onClick={() => onClickNum(GAME_DIFFICULTY_EASY)}
         />
         <Button
           text="Normal"
           color="var(--sub-color)"
-          onClick={() => onClickNum(7)}
+          onClick={() => onClickNum(GAME_DIFFICULTY_NORMAL)}
         />
         <Button
           text="Hard"
           color="var(--sub-color)"
-          onClick={() => onClickNum(9)}
+          onClick={() => onClickNum(GAME_DIFFICULTY_HARD)}
         />
       </BtnWrapper>
       <CardgameContainer
