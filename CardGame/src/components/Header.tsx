@@ -3,14 +3,18 @@ import Button from "@/components/button/Button";
 
 interface HeaderInterface {
   onClickResetBtn: () => void;
+  score: number;
+  numPairs: number;
 }
 
-const Header = ({ onClickResetBtn }: HeaderInterface) => {
+const Header = ({ onClickResetBtn, score, numPairs }: HeaderInterface) => {
   return (
     <HearderStyled>
       <TitleBoxStyled>
         <TitleStyled>마루 카드 맞추기</TitleStyled>
-        <ScoreStyled>dd</ScoreStyled>
+        <ScoreStyled>
+          {score} / {numPairs}
+        </ScoreStyled>
       </TitleBoxStyled>
       <BtnWrapper>
         <Button

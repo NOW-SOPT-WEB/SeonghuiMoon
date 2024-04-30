@@ -1,36 +1,32 @@
-import React from "react";
 import { styled } from "styled-components";
-import Button from "@/components/button/Button";
+import CardContainer from "@/components/Card/CardContainer";
 
-interface CardGameInterface {
-  onClickBtn: () => void;
+interface CardType {
+  id: number;
+  imgSrc: string;
 }
 
-const CardGame = ({ onClickBtn }: CardGameInterface) => {
+interface CardGameInterface {
+  cards: CardType[];
+}
+
+const CardGame = ({ cards }: CardGameInterface) => {
   return (
     <CardGameStyled>
-      <BtnWarpper>
-        <Button text="Easy" color="var(--sub-color)" onClick={onClickBtn} />
-        <Button text="Normal" color="var(--sub-color)" onClick={onClickBtn} />
-        <Button text="Hard" color="var(--sub-color)" onClick={onClickBtn} />
-      </BtnWarpper>
+      {cards.map((card, index) => (
+        <CardContainer id={card.id} imgSrc={card.imgSrc} key={index} />
+      ))}
     </CardGameStyled>
   );
 };
 
 const CardGameStyled = styled.div`
-  width: 100%;
-  /* height: 100vh; */
-
+  width: 80%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 `;
 
-const BtnWarpper = styled.div`
-  width: 40%;
-  display: flex;
-  justify-content: space-evenly;
-  margin: 2rem;
-`;
 export default CardGame;
