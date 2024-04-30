@@ -7,9 +7,7 @@ itemBoxBtn.addEventListener("click", function (event) {
 
   if (target && target.classList.contains("item_box")) {
     const itemId = target.getAttribute("data-id");
-
-    let cart = localStorage.getItem("cart");
-    cart = cart ? JSON.parse(cart) : [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     if (cart.includes(itemId)) {
       alert("이미 장바구니에 추가된 아이템입니다.");
