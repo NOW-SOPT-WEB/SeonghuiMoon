@@ -1,7 +1,8 @@
+import { HOME_PAGE_URL } from "../const/const.js";
+
 const homeBtn = document.querySelector(".homeBtn");
 homeBtn.addEventListener("click", () => {
-  window.location.href =
-    "http://127.0.0.1:5500/ShoppingList/pages/mainPage.html";
+  window.location.href = HOME_PAGE_URL;
 });
 
 const menubarBtn = document.querySelector(".menubarBtn");

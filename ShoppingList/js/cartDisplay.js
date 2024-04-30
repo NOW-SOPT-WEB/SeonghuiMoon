@@ -1,10 +1,10 @@
 import { itemsData } from "/ShoppingList/assets/data/itemData.js";
 import { getComma } from "../utils/getComma.js";
+import { HOME_PAGE_URL } from "../const/const.js";
 
 const toHomeBtn = document.querySelector(".toHomeBtn");
 toHomeBtn.addEventListener("click", () => {
-  window.location.href =
-    "http://127.0.0.1:5500/ShoppingList/pages/mainPage.html";
+  window.location.href = HOME_PAGE_URL;
 });
 
 function loadCartItems() {
