@@ -44,9 +44,14 @@ const TitleBoxStyled = styled.div`
   line-height: 1.2;
 `;
 
-const TitleStyled = styled.div``;
+const TitleStyled = styled.div`
+  font-weight: bold;
+`;
 
-const ScoreStyled = styled.div``;
+const ScoreStyled = styled.div`
+  font-weight: bold;
+`;
+
 const BtnWrapper = styled.div`
   position: fixed;
   right: 2rem;

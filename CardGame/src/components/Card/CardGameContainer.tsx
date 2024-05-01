@@ -79,9 +79,10 @@ const CardgameContainer = ({
       {cards.map((card) => (
         <Card
           id={card.id}
-          imgSrc={isFlipped(card.id) ? card.imgSrc : BasicImg}
-          onClickCard={() => onClickCard(card.id)}
           key={card.id}
+          imgSrc={isFlipped(card.id) ? card.imgSrc : BasicImg}
+          isFlipped={isFlipped(card.id)}
+          onClickCard={() => onClickCard(card.id)}
         />
       ))}
     </CardGameStyled>
