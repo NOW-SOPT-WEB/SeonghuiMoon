@@ -24,9 +24,12 @@ const CardgameContainer = ({
   const [openedCards, setOpenedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [cards, setCards] = useState<CardType[]>([]);
+  const [initialFlip, setInitialFlip] = useState(false);
 
   useEffect(() => {
     initCards();
+    setInitialFlip(true);
+    setTimeout(() => setInitialFlip(false), 200);
   }, [numPairs, reset]);
 
   const initCards = () => {
@@ -81,7 +84,7 @@ const CardgameContainer = ({
           id={card.id}
           key={card.id}
           imgSrc={isFlipped(card.id) ? card.imgSrc : BasicImg}
-          isFlipped={isFlipped(card.id)}
+          isFlipped={isFlipped(card.id) || initialFlip}
           onClickCard={() => onClickCard(card.id)}
         />
       ))}
