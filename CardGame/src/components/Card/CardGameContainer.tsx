@@ -54,9 +54,8 @@ const CardgameContainer = ({
   };
 
   const onClickCard = (cardId: number) => {
-    if (matchedCards.includes(cardId) || openedCards.includes(cardId)) {
-      return;
-    }
+    if (isFlipped(cardId)) return;
+
     if (openedCards.length === 0) {
       setOpenedCards([cardId]);
     } else if (openedCards.length === 1) {

@@ -30,7 +30,7 @@ const CardStyled = styled.div<{
   background-size: cover;
   background-position: center;
   cursor: pointer;
-  transition: transform 0.4s;
+  transition: transform 0.6s;
   transform-style: preserve-3d;
   position: relative;
   background-image: url(${({ $imgSrc }) => $imgSrc});

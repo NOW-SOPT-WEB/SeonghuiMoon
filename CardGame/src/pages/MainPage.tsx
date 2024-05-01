@@ -69,7 +69,7 @@ const MainPage = () => {
         reset={reset}
       />
       {showModal && (
-        <Modal onClose={CloseModal} modalText="게임을 클리어하였습니다!" />
+        <Modal onClose={CloseModal} modalText="🧩게임을 클리어하였습니다!🧩" />
       )}
     </MainPageStyled>
   );
