@@ -1,4 +1,4 @@
-import LoginBox from "@/components/LoginBox/LoginBox";
+import LoginBox from "@/components/login/LoginBox";
 import { styled } from "styled-components";
 
 const LoginPage = () => {
@@ -12,7 +12,7 @@ const LoginPage = () => {
 const LoginPageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.background_color};
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
   align-items: center;
