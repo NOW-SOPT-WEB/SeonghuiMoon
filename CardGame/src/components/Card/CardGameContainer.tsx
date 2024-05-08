@@ -29,7 +29,11 @@ const CardgameContainer = ({
   useEffect(() => {
     initCards();
     setInitialFlip(true);
-    setTimeout(() => setInitialFlip(false), 200);
+    const timer = setTimeout(() => {
+      setInitialFlip(false);
+    }, 200);
+
+    return () => clearTimeout(timer);
   }, [numPairs, reset]);
 
   const initCards = () => {
@@ -69,9 +73,11 @@ const CardgameContainer = ({
         setOpenedCards([]);
       } else {
         setOpenedCards([...openedCards, cardId]);
-        setTimeout(() => {
+        const timer = setTimeout(() => {
           setOpenedCards([]);
         }, 1000);
+
+        return () => clearTimeout(timer);
       }
     }
   };
