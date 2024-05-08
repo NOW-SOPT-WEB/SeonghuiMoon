@@ -14,7 +14,7 @@ const Card = ({ id, onClickCard, isFlipped, imgSrc }: CardInterface) => {
       onClick={onClickCard}
       $isFlipped={isFlipped}
       $imgSrc={imgSrc}
-    ></CardStyled>
+    />
   );
 };
 
