@@ -59,7 +59,7 @@ const CardgameContainer = ({
     if (openedCards.length === 0) {
       setOpenedCards([cardId]);
     } else if (openedCards.length === 1) {
-      const firstCardId = openedCards[0];
+      const [firstCardId] = openedCards;
       const firstCard = cards.find((card) => card.id === firstCardId);
       const currentCard = cards.find((card) => card.id === cardId);
 
