@@ -11,10 +11,10 @@ const Header = ({ score, numPairs, onClickReset }: HeaderInterface) => {
   return (
     <HearderStyled>
       <TitleBoxStyled>
-        <TitleStyled>마루 카드 맞추기</TitleStyled>
-        <ScoreStyled>
+        <TextStyled>마루 카드 맞추기</TextStyled>
+        <TextStyled>
           {score} / {numPairs}
-        </ScoreStyled>
+        </TextStyled>
       </TitleBoxStyled>
       <BtnWrapper>
         <Button
@@ -44,11 +44,7 @@ const TitleBoxStyled = styled.div`
   line-height: 1.2;
 `;
 
-const TitleStyled = styled.div`
-  font-weight: bold;
-`;
-
-const ScoreStyled = styled.div`
+const TextStyled = styled.div`
   font-weight: bold;
 `;
 
