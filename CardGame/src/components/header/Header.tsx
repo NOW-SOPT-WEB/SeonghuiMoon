@@ -27,7 +27,7 @@ const Header = ({ score, numPairs, onClickReset }: HeaderInterface) => {
   );
 };
 
-const HearderStyled = styled.div`
+const HearderStyled = styled.header`
   width: 100%;
   height: 9rem;
   background-color: var(--main-color);
