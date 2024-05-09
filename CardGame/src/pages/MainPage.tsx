@@ -78,7 +78,7 @@ const MainPage = () => {
 const MainPageStyled = styled.div`
   width: 100%;
   height: 100%;
-  background-color: var(--background-color);
+  background-color: ${({ theme }) => theme.colors.background_color};
   display: flex;
   flex-direction: column;
   align-items: center;

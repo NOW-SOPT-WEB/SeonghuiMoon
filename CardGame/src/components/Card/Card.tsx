@@ -24,7 +24,7 @@ const CardStyled = styled.div<{
 }>`
   width: 12rem;
   height: 15rem;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 0.5rem;
   border: 1px solid black;
   background-size: cover;

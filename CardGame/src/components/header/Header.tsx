@@ -30,7 +30,7 @@ const Header = ({ score, numPairs, onClickReset }: HeaderInterface) => {
 const HearderStyled = styled.header`
   width: 100%;
   height: 9rem;
-  background-color: var(--main-color);
+  background-color: ${({ theme }) => theme.colors.main_color};
   display: flex;
   align-items: center;
   justify-content: center;
