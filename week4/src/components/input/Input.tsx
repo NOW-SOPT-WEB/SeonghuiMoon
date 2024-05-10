@@ -8,7 +8,7 @@ interface InputFormInterface {
   value: string;
   onChange: (e: React.FocusEvent<HTMLInputElement>) => void;
   errorText?: string;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const InputForm = ({
@@ -22,10 +22,10 @@ const InputForm = ({
   onBlur,
 }: InputFormInterface) => {
   return (
-    <FormInput>
-      <Label htmlFor={id}>{label}</Label>
+    <InputFormStyled>
+      <LabelStyled htmlFor={id}>{label}</LabelStyled>
       <InputWrapper>
-        <Input
+        <InputStyled
           type={type}
           id={id}
           name={name}
@@ -33,13 +33,13 @@ const InputForm = ({
           onChange={onChange}
           onBlur={onBlur}
         />
-        {errorText && <ErrorText>{errorText}</ErrorText>}
+        {errorText && <ErrorTextStyled>{errorText}</ErrorTextStyled>}
       </InputWrapper>
-    </FormInput>
+    </InputFormStyled>
   );
 };
 
-const FormInput = styled.form`
+const InputFormStyled = styled.form`
   display: flex;
   align-items: baseline;
   justify-content: space-evenly;
@@ -47,8 +47,8 @@ const FormInput = styled.form`
   width: 100%;
 `;
 
-const Label = styled.label`
-  margin-right: 0.5rem;
+const LabelStyled = styled.label`
+  font-size: 1.2rem;
 `;
 
 const InputWrapper = styled.div`
@@ -58,14 +58,14 @@ const InputWrapper = styled.div`
   height: 3.5rem;
 `;
 
-const Input = styled.input`
+const InputStyled = styled.input`
   height: 2rem;
   border: 1px solid ${({ theme }) => theme.colors.sub_color};
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
 `;
 
-const ErrorText = styled.span`
+const ErrorTextStyled = styled.span`
   color: red;
   font-size: 0.8rem;
 `;
