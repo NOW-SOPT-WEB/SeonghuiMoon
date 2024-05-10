@@ -3,22 +3,40 @@ import MaruImg from "@/assets/images/maru1.png";
 import Button from "@/components/button/Button";
 import InputForm from "@/components/input/Input";
 import useInputVaild from "@/hooks/useInputVaild";
+import { axiosLogin } from "@/api/axios";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginBox = () => {
-  const onClickBtn = () => {};
+  const navigate = useNavigate();
+  const onClickLoginBtn = async () => {
+    try {
+      const response = await axiosLogin(userId, userPw);
+      if (response.data.code === 200) {
+        navigate("/main");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response)
+        alert(error.response.data.message);
+    }
+  };
+
+  const onClickSignUpBtn = () => {
+    navigate("/signup");
+  };
 
   const {
     value: userId,
     error: userIdError,
-    handleChange: handleUserIdChange,
-    handleBlur: handleUserIdBlur,
+    handleChange: handleIdChange,
+    handleBlur: handleIdBlur,
   } = useInputVaild("", "userId");
 
   const {
     value: userPw,
     error: userPwError,
     handleChange: handlePwChange,
-    handleBlur: handlePasswordBlur,
+    handleBlur: handlePwBlur,
   } = useInputVaild("", "userPw");
 
   return (
@@ -32,9 +50,9 @@ const LoginBox = () => {
           id="userId"
           name="userId"
           value={userId}
-          onChange={handleUserIdChange}
+          onChange={handleIdChange}
           errorText={userIdError}
-          onBlur={handleUserIdBlur}
+          onBlur={handleIdBlur}
         />
         <InputForm
           label="PW"
@@ -44,18 +62,18 @@ const LoginBox = () => {
           value={userPw}
           onChange={handlePwChange}
           errorText={userPwError}
-          onBlur={handlePasswordBlur}
+          onBlur={handlePwBlur}
         />
       </LoginFormWrapper>
       <LoginBtnWrapper>
         <Button
-          onClick={onClickBtn}
+          onClick={onClickLoginBtn}
           text="로그인"
           color="var(--sub-color)"
           isClicked={false}
         />
         <Button
-          onClick={onClickBtn}
+          onClick={onClickSignUpBtn}
           text="회원가입"
           color="var(--sub-color)"
           isClicked={true}
