@@ -20,3 +20,22 @@ export const axiosLogin = async (
     throw error;
   }
 };
+
+export const axiosJoin = async (
+  authenticationId: string,
+  password: string,
+  nickname: string,
+  phone: string
+): Promise<any> => {
+  try {
+    const response = await instance.post("/member/join", {
+      authenticationId,
+      password,
+      nickname,
+      phone,
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};

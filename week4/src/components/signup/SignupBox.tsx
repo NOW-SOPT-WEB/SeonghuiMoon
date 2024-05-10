@@ -2,9 +2,23 @@ import { styled } from "styled-components";
 import Button from "@/components/button/Button";
 import InputForm from "@/components/input/Input";
 import useInputVaild from "@/hooks/useInputVaild";
+import { axiosJoin } from "@/api/axios";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignupBox = () => {
-  const onClickBtn = () => {};
+  const navigate = useNavigate();
+  const onClickLoginBtn = async () => {
+    try {
+      const response = await axiosJoin(userId, userPw, userName, userPn);
+      if (response.data.code === 201) {
+        navigate("/main");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response)
+        alert(error.response.data.message);
+    }
+  };
 
   const {
     value: userId,
@@ -77,13 +91,13 @@ const SignupBox = () => {
       </LoginFormWrapper>
       <LoginBtnWrapper>
         <Button
-          onClick={onClickBtn}
+          onClick={onClickLoginBtn}
           text="회원가입"
           color="var(--sub-color)"
           isClicked={false}
         />
         <Button
-          onClick={onClickBtn}
+          onClick={onClickLoginBtn}
           text="뒤로가기"
           color="var(--sub-color)"
           isClicked={true}
