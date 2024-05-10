@@ -1,13 +1,13 @@
 import { styled } from "styled-components";
 
-interface ButtonInterfage {
+interface ButtonInterface {
   onClick: () => void;
   text: string;
   color: string;
   isClicked?: boolean;
 }
 
-const Button = ({ onClick, text, color, isClicked }: ButtonInterfage) => {
+const Button = ({ onClick, text, color, isClicked }: ButtonInterface) => {
   return (
     <ButtonStyled onClick={onClick} color={color} isClicked={isClicked}>
       {text}

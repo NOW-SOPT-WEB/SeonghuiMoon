@@ -1,22 +1,51 @@
 import { styled } from "styled-components";
 import MaruImg from "@/assets/images/maru1.png";
 import Button from "@/components/button/Button";
+import InputForm from "@/components/input/Input";
+import useInputVaild from "@/hooks/useInputVaild";
 
 const LoginBox = () => {
   const onClickBtn = () => {};
+
+  const {
+    value: userId,
+    error: userIdError,
+    handleChange: handleUserIdChange,
+    handleBlur: handleUserIdBlur,
+  } = useInputVaild("", "userId");
+
+  const {
+    value: userPw,
+    error: userPwError,
+    handleChange: handlePwChange,
+    handleBlur: handlePasswordBlur,
+  } = useInputVaild("", "userPw");
+
   return (
     <LoginBoxStyled>
       <LoginTitle>LOGIN</LoginTitle>
-      <LoginLogo src={MaruImg}></LoginLogo>
+      <LoginLogo src={MaruImg} alt="loginLogo"></LoginLogo>
       <LoginFormWrapper>
-        <LoginForm>
-          <Label htmlFor="userId">ID</Label>
-          <Input type="text" id="userId" name="userId" />
-        </LoginForm>
-        <LoginForm>
-          <Label htmlFor="password">PW</Label>
-          <Input type="password" id="password" name="password" />
-        </LoginForm>
+        <InputForm
+          label="ID"
+          type="text"
+          id="userId"
+          name="userId"
+          value={userId}
+          onChange={handleUserIdChange}
+          errorText={userIdError}
+          onBlur={handleUserIdBlur}
+        />
+        <InputForm
+          label="PW"
+          type="text"
+          id="userPw"
+          name="userPw"
+          value={userPw}
+          onChange={handlePwChange}
+          errorText={userPwError}
+          onBlur={handlePasswordBlur}
+        />
       </LoginFormWrapper>
       <LoginBtnWrapper>
         <Button
@@ -59,6 +88,8 @@ const LoginLogo = styled.img`
 
 const LoginFormWrapper = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const LoginBtnWrapper = styled.div`
@@ -67,22 +98,4 @@ const LoginBtnWrapper = styled.div`
   justify-content: space-evenly;
 `;
 
-const LoginForm = styled.form`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-`;
-
-const Label = styled.label`
-  margin-right: 0.5rem;
-`;
-
-const Input = styled.input`
-  width: 20rem;
-  height: 1.5rem;
-  padding: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.sub_color};
-  border-radius: 0.5rem;
-`;
 export default LoginBox;
