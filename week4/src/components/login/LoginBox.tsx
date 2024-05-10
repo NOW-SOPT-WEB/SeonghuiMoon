@@ -84,7 +84,7 @@ const LoginBox = () => {
 };
 
 const LoginBoxStyled = styled.div`
-  width: 25rem;
+  width: 24rem;
   height: 30rem;
   background-color: ${({ theme }) => theme.colors.main_color};
   border-radius: 0.5rem;
@@ -105,7 +105,7 @@ const LoginLogo = styled.img`
 `;
 
 const LoginFormWrapper = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
 `;

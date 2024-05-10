@@ -9,6 +9,7 @@ interface InputFormInterface {
   onChange: (e: React.FocusEvent<HTMLInputElement>) => void;
   errorText?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  detailText?: string;
 }
 
 const InputForm = ({
@@ -20,6 +21,7 @@ const InputForm = ({
   onChange,
   errorText,
   onBlur,
+  detailText,
 }: InputFormInterface) => {
   return (
     <InputFormStyled>
@@ -34,6 +36,7 @@ const InputForm = ({
           onBlur={onBlur}
         />
         {errorText && <ErrorTextStyled>{errorText}</ErrorTextStyled>}
+        {detailText && <DetailTextStyled>{detailText}</DetailTextStyled>}
       </InputWrapper>
     </InputFormStyled>
   );
@@ -42,8 +45,7 @@ const InputForm = ({
 const InputFormStyled = styled.form`
   display: flex;
   align-items: baseline;
-  justify-content: space-evenly;
-  padding: 0.5rem;
+  justify-content: space-between;
   width: 100%;
 `;
 
@@ -54,8 +56,8 @@ const LabelStyled = styled.label`
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
-  height: 3.5rem;
+  width: 80%;
+  height: 4rem;
 `;
 
 const InputStyled = styled.input`
@@ -67,6 +69,11 @@ const InputStyled = styled.input`
 
 const ErrorTextStyled = styled.span`
   color: red;
+  font-size: 0.8rem;
+`;
+
+const DetailTextStyled = styled.div`
+  color: blue;
   font-size: 0.8rem;
 `;
 

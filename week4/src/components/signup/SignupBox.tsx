@@ -1,28 +1,79 @@
 import { styled } from "styled-components";
 import Button from "@/components/button/Button";
+import InputForm from "@/components/input/Input";
+import useInputVaild from "@/hooks/useInputVaild";
 
 const SignupBox = () => {
   const onClickBtn = () => {};
+
+  const {
+    value: userId,
+    handleChange: handleIdChange,
+    handleBlur: handleIdBlur,
+  } = useInputVaild("", "userId");
+
+  const {
+    value: userPw,
+    detail: userPwDetail,
+    handleChange: handlePwChange,
+    handleBlur: handlePwBlur,
+  } = useInputVaild("", "userPw");
+
+  const {
+    value: userName,
+    handleChange: handleNameChange,
+    handleBlur: handleNameBlur,
+  } = useInputVaild("", "userName");
+
+  const {
+    value: userPn,
+    detail: userPnDetail,
+    handleChange: handlePnChange,
+    handleBlur: handlePnBlur,
+  } = useInputVaild("", "userPn");
+
   return (
     <LoginBoxStyled>
       <LoginTitle>회원가입</LoginTitle>
       <LoginFormWrapper>
-        <LoginForm>
-          <Label htmlFor="userId">ID</Label>
-          <Input type="text" id="userId" name="userId" />
-        </LoginForm>
-        <LoginForm>
-          <Label htmlFor="password">PW</Label>
-          <Input type="password" id="password" name="password" />
-        </LoginForm>
-        <LoginForm>
-          <Label htmlFor="userId">닉네임</Label>
-          <Input type="text" id="userId" name="userId" />
-        </LoginForm>
-        <LoginForm>
-          <Label htmlFor="password">전화번호</Label>
-          <Input type="password" id="password" name="password" />
-        </LoginForm>
+        <InputForm
+          label="ID"
+          type="text"
+          id="userId"
+          name="userId"
+          value={userId}
+          onChange={handleIdChange}
+          onBlur={handleIdBlur}
+        />
+        <InputForm
+          label="PW"
+          type="text"
+          id="userPw"
+          name="userPw"
+          value={userPw}
+          onChange={handlePwChange}
+          onBlur={handlePwBlur}
+          detailText={userPwDetail}
+        />
+        <InputForm
+          label="닉네임"
+          type="text"
+          id="userNickname"
+          name="userNickname"
+          value={userName}
+          onChange={handleNameChange}
+          onBlur={handleNameBlur}
+        />
+        <InputForm
+          label="전화번호"
+          type="text"
+          id="userPn"
+          name="userPn"
+          value={userPn}
+          onChange={handlePnChange}
+          onBlur={handlePnBlur}
+          detailText={userPnDetail}
+        />
       </LoginFormWrapper>
       <LoginBtnWrapper>
         <Button
@@ -43,15 +94,14 @@ const SignupBox = () => {
 };
 
 const LoginBoxStyled = styled.div`
-  width: 25rem;
-  height: 30rem;
+  width: 40rem;
+  height: 35rem;
   background-color: ${({ theme }) => theme.colors.main_color};
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  padding: 0 2rem;
 `;
 
 const LoginTitle = styled.div`
@@ -61,7 +111,11 @@ const LoginTitle = styled.div`
 `;
 
 const LoginFormWrapper = styled.div`
-  width: 100%;
+  width: 80%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 `;
 
 const LoginBtnWrapper = styled.div`
@@ -70,22 +124,4 @@ const LoginBtnWrapper = styled.div`
   justify-content: space-evenly;
 `;
 
-const LoginForm = styled.form`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-`;
-
-const Label = styled.label`
-  margin-right: 0.5rem;
-`;
-
-const Input = styled.input`
-  width: 70%;
-  height: 1.5rem;
-  padding: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.sub_color};
-  border-radius: 0.5rem;
-`;
 export default SignupBox;
