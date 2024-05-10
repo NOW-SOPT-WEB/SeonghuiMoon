@@ -16,7 +16,7 @@ const Button = ({ onClick, text, color, isClicked }: ButtonInterfage) => {
 };
 
 const ButtonStyled = styled.button<{ color: string; isClicked?: boolean }>`
-  width: 8rem;
+  width: 9rem;
   height: 3rem;
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
