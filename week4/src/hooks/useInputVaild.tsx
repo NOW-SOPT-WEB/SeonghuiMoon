@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { formatPhoneNumber } from "@/utils/phoneNumber";
+import { formatPhoneNumber } from "@/utils/formatPhoneNumber";
 
 interface useInputVaildInterface {
   value: string;
