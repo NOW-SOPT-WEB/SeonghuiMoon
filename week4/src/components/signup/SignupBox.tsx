@@ -22,7 +22,6 @@ const SignupBox = () => {
   const [userPnError, setUserPnError] = useState(false);
 
   const onClickLoginBtn = async () => {
-    let hasError = false;
     setUserIdError(false);
     setUserPwError(false);
     setUserNameError(false);
@@ -32,22 +31,22 @@ const SignupBox = () => {
       setUserIdError(true);
       userIdRef.current?.focus();
       alert("ID를 입력해주세요.");
-      hasError = true;
+      return;
     } else if (!userPw.trim()) {
       setUserPwError(true);
       userPwRef.current?.focus();
       alert("비밀번호를 입력해주세요.");
-      hasError = true;
+      return;
     } else if (!userName.trim()) {
       setUserNameError(true);
       userNameRef.current?.focus();
       alert("닉네임을 입력해주세요.");
-      hasError = true;
+      return;
     } else if (!userPn.trim()) {
       setUserPnError(true);
       userPnRef.current?.focus();
       alert("전화번호를 입력해주세요.");
-      hasError = true;
+      return;
     }
 
     const passwordError = validatePassword(userPw);
@@ -56,18 +55,16 @@ const SignupBox = () => {
       return;
     }
 
-    if (!hasError) {
-      try {
-        const response = await axiosJoin(userId, userPw, userName, userPn);
-        if (response.data.code === 201) {
-          const headerId = response.headers["location"];
-          alert("회원가입이 완료되었습니다.");
-          navigate(`/main/${headerId}`);
-        }
-      } catch (error) {
-        if (axios.isAxiosError(error) && error.response)
-          alert(error.response.data.message);
+    try {
+      const response = await axiosJoin(userId, userPw, userName, userPn);
+      if (response.data.code === 201) {
+        const headerId = response.headers["location"];
+        alert("회원가입이 완료되었습니다.");
+        navigate(`/main/${headerId}`);
       }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response)
+        alert(error.response.data.message);
     }
   };
 
