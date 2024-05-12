@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { axiosInfo } from "@/api/axios";
+import PwChange from "@/components/pwChange/PwChange";
 
 const MyInfo = () => {
   const navigate = useNavigate();
@@ -11,7 +12,6 @@ const MyInfo = () => {
   const onClickSignUpBtn = () => {
     navigate(`/main/${userId}`);
   };
-  const onClickBtn = () => {};
   const [showPwChange, setShowPwChange] = useState(false);
   const onClickTogglePwChange = () => setShowPwChange(!showPwChange);
 
@@ -63,28 +63,7 @@ const MyInfo = () => {
         color="var(--main-color)"
         isClicked={false}
       />
-      {showPwChange && (
-        <PwChangeWrapper>
-          <LoginForm>
-            <Label htmlFor="userId">기존 비밀번호</Label>
-            <Input type="text" id="userId" name="userId" />
-          </LoginForm>
-          <LoginForm>
-            <Label htmlFor="password">새로운 비밀번호</Label>
-            <Input type="password" id="password" name="password" />
-          </LoginForm>
-          <LoginForm>
-            <Label htmlFor="userId">비밀번호 확인</Label>
-            <Input type="text" id="userId" name="userId" />
-          </LoginForm>
-          <Button
-            onClick={onClickBtn}
-            text="비밀번호 변경"
-            color="var(--sub-color)"
-            isClicked={false}
-          />
-        </PwChangeWrapper>
-      )}
+      {showPwChange && <PwChange />}
       <LoginBtnWrapper>
         <Button
           onClick={onClickSignUpBtn}
@@ -138,14 +117,6 @@ const LoginForm = styled.form`
 const Label = styled.label`
   margin-right: 0.5rem;
   width: 8rem;
-`;
-
-const Input = styled.input`
-  width: 60%;
-  height: 1.5rem;
-  padding: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.sub_color};
-  border-radius: 0.5rem;
 `;
 
 const BasicInfo = styled.div``;
