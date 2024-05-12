@@ -10,8 +10,8 @@ function App(): React.ReactElement {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="signup" element={<SignUpPage />} />
-        <Route path="/main/:id" element={<MainPage />} />
-        <Route path="mypage" element={<MyPage />} />
+        <Route path="/main/:userId" element={<MainPage />} />
+        <Route path="mypage/:userId" element={<MyPage />} />
       </Routes>
     </BrowserRouter>
   );

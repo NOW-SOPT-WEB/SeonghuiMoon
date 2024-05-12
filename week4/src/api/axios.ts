@@ -39,3 +39,16 @@ export const axiosJoin = async (
     throw error;
   }
 };
+
+export const axiosInfo = async (memberId: string | undefined): Promise<any> => {
+  try {
+    const response = await instance.get("/member/info", {
+      headers: {
+        memberId: memberId,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

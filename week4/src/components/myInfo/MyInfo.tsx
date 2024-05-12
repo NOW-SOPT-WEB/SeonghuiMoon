@@ -1,26 +1,60 @@
 import { styled } from "styled-components";
 import Button from "@/components/button/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { axiosInfo } from "@/api/axios";
 
 const MyInfo = () => {
+  const navigate = useNavigate();
+  const { userId } = useParams();
+  const onClickSignUpBtn = () => {
+    navigate(`/main/${userId}`);
+  };
   const onClickBtn = () => {};
   const [showPwChange, setShowPwChange] = useState(false);
   const onClickTogglePwChange = () => setShowPwChange(!showPwChange);
+
+  const [userInfo, setUserInfo] = useState({
+    authenticationId: "",
+    nickname: "",
+    phone: "",
+  });
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axiosInfo(userId);
+        if (response.data) {
+          setUserInfo({
+            authenticationId: response.data.authenticationId,
+            nickname: response.data.nickname,
+            phone: response.data.phone,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (userId) fetchUserInfo();
+  }, [userId]);
+
   return (
     <LoginBoxStyled>
       <LoginTitle>마이 페이지</LoginTitle>
       <PwChangeWrapper>
         <LoginForm>
           <Label htmlFor="userId">ID</Label>
-          <BasicInfo>seonghmo</BasicInfo>
+          <BasicInfo>{userInfo.authenticationId}</BasicInfo>
         </LoginForm>
         <LoginForm>
           <Label htmlFor="password">닉네임</Label>
-          <BasicInfo>문성희</BasicInfo>
+          <BasicInfo>{userInfo.nickname}</BasicInfo>
         </LoginForm>
         <LoginForm>
           <Label htmlFor="userId">전화번호</Label>
-          <BasicInfo>010-1234-1234</BasicInfo>
+          <BasicInfo>{userInfo.phone}</BasicInfo>
         </LoginForm>
       </PwChangeWrapper>
       <Button
@@ -53,7 +87,7 @@ const MyInfo = () => {
       )}
       <LoginBtnWrapper>
         <Button
-          onClick={onClickBtn}
+          onClick={onClickSignUpBtn}
           text="홈으로"
           color="var(--sub-color)"
           isClicked={true}
