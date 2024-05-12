@@ -11,7 +11,3 @@ const theme = {
 };
 
 export default theme;
-// --main-color: #85bd76;
-// --sub-color: #2f2d52;
-// --background-color: #eaf1f9;
-// --point-color: #e2c478;
