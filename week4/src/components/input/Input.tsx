@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { forwardRef } from "react";
 
 interface InputFormInterface {
   label: string;
@@ -10,37 +11,46 @@ interface InputFormInterface {
   errorText?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   detailText?: string;
+  isFocus?: boolean;
 }
 
-const InputForm = ({
-  label,
-  type,
-  id,
-  name,
-  value,
-  onChange,
-  errorText,
-  onBlur,
-  detailText,
-}: InputFormInterface) => {
-  return (
-    <InputFormStyled>
-      <LabelStyled htmlFor={id}>{label}</LabelStyled>
-      <InputWrapper>
-        <InputStyled
-          type={type}
-          id={id}
-          name={name}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-        />
-        {errorText && <ErrorTextStyled>{errorText}</ErrorTextStyled>}
-        {detailText && <DetailTextStyled>{detailText}</DetailTextStyled>}
-      </InputWrapper>
-    </InputFormStyled>
-  );
-};
+const InputForm = forwardRef<HTMLInputElement, InputFormInterface>(
+  (
+    {
+      label,
+      type,
+      id,
+      name,
+      value,
+      onChange,
+      onBlur,
+      errorText,
+      detailText,
+      isFocus,
+    },
+    ref
+  ) => {
+    return (
+      <InputFormStyled>
+        <LabelStyled htmlFor={id}>{label}</LabelStyled>
+        <InputWrapper>
+          <InputStyled
+            type={type}
+            id={id}
+            name={name}
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            ref={ref}
+            isFocus={isFocus}
+          />
+          {errorText && <ErrorTextStyled>{errorText}</ErrorTextStyled>}
+          {detailText && <DetailTextStyled>{detailText}</DetailTextStyled>}
+        </InputWrapper>
+      </InputFormStyled>
+    );
+  }
+);
 
 const InputFormStyled = styled.form`
   display: flex;
@@ -60,11 +70,13 @@ const InputWrapper = styled.div`
   height: 4rem;
 `;
 
-const InputStyled = styled.input`
+const InputStyled = styled.input<{ isFocus?: boolean }>`
   height: 2rem;
-  border: 1px solid ${({ theme }) => theme.colors.sub_color};
+  border: 1px solid
+    ${({ theme, isFocus }) => (isFocus ? "red" : theme.colors.sub_color)};
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
+  outline: none;
 `;
 
 const ErrorTextStyled = styled.span`

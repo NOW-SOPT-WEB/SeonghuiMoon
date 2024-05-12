@@ -5,18 +5,59 @@ import useInputVaild from "@/hooks/useInputVaild";
 import { axiosJoin } from "@/api/axios";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useState, useRef } from "react";
 
 const SignupBox = () => {
   const navigate = useNavigate();
+
+  const userIdRef = useRef<HTMLInputElement>(null);
+  const userPwRef = useRef<HTMLInputElement>(null);
+  const userNameRef = useRef<HTMLInputElement>(null);
+  const userPnRef = useRef<HTMLInputElement>(null);
+
+  const [userIdError, setUserIdError] = useState(false);
+  const [userPwError, setUserPwError] = useState(false);
+  const [userNameError, setUserNameError] = useState(false);
+  const [userPnError, setUserPnError] = useState(false);
+
   const onClickLoginBtn = async () => {
-    try {
-      const response = await axiosJoin(userId, userPw, userName, userPn);
-      if (response.data.code === 201) {
-        navigate("/main");
+    let hasError = false;
+    setUserIdError(false);
+    setUserPwError(false);
+    setUserNameError(false);
+    setUserPnError(false);
+
+    if (!userId.trim()) {
+      setUserIdError(true);
+      userIdRef.current?.focus();
+      alert("ID를 입력해주세요.");
+      hasError = true;
+    } else if (!userPw.trim()) {
+      setUserPwError(true);
+      userPwRef.current?.focus();
+      alert("비밀번호를 입력해주세요.");
+      hasError = true;
+    } else if (!userName.trim()) {
+      setUserNameError(true);
+      userNameRef.current?.focus();
+      alert("닉네임을 입력해주세요.");
+      hasError = true;
+    } else if (!userPn.trim()) {
+      setUserPnError(true);
+      userPnRef.current?.focus();
+      alert("전화번호를 입력해주세요.");
+      hasError = true;
+    }
+    if (!hasError) {
+      try {
+        const response = await axiosJoin(userId, userPw, userName, userPn);
+        if (response.data.code === 201) {
+          navigate("/main");
+        }
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response)
+          alert(error.response.data.message);
       }
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response)
-        alert(error.response.data.message);
     }
   };
 
@@ -58,6 +99,8 @@ const SignupBox = () => {
           value={userId}
           onChange={handleIdChange}
           onBlur={handleIdBlur}
+          ref={userIdRef}
+          isFocus={userIdError}
         />
         <InputForm
           label="PW"
@@ -68,6 +111,8 @@ const SignupBox = () => {
           onChange={handlePwChange}
           onBlur={handlePwBlur}
           detailText={userPwDetail}
+          ref={userPwRef}
+          isFocus={userPwError}
         />
         <InputForm
           label="닉네임"
@@ -77,16 +122,20 @@ const SignupBox = () => {
           value={userName}
           onChange={handleNameChange}
           onBlur={handleNameBlur}
+          ref={userNameRef}
+          isFocus={userNameError}
         />
         <InputForm
           label="전화번호"
-          type="text"
+          type="tel"
           id="userPn"
           name="userPn"
           value={userPn}
           onChange={handlePnChange}
           onBlur={handlePnBlur}
           detailText={userPnDetail}
+          ref={userPnRef}
+          isFocus={userPnError}
         />
       </LoginFormWrapper>
       <LoginBtnWrapper>
@@ -97,7 +146,7 @@ const SignupBox = () => {
           isClicked={false}
         />
         <Button
-          onClick={onClickLoginBtn}
+          onClick={() => navigate(-1)}
           text="뒤로가기"
           color="var(--sub-color)"
           isClicked={true}
