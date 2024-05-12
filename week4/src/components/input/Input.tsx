@@ -42,7 +42,7 @@ const InputForm = forwardRef<HTMLInputElement, InputFormInterface>(
             onChange={onChange}
             onBlur={onBlur}
             ref={ref}
-            isFocus={isFocus}
+            $isFocus={isFocus}
           />
           {errorText && <ErrorTextStyled>{errorText}</ErrorTextStyled>}
           {detailText && <DetailTextStyled>{detailText}</DetailTextStyled>}
@@ -70,10 +70,10 @@ const InputWrapper = styled.div`
   height: 4rem;
 `;
 
-const InputStyled = styled.input<{ isFocus?: boolean }>`
+const InputStyled = styled.input<{ $isFocus?: boolean }>`
   height: 2rem;
   border: 1px solid
-    ${({ theme, isFocus }) => (isFocus ? "red" : theme.colors.sub_color)};
+    ${({ theme, $isFocus }) => ($isFocus ? "red" : theme.colors.sub_color)};
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
   outline: none;
