@@ -52,3 +52,29 @@ export const axiosInfo = async (memberId: string | undefined): Promise<any> => {
     throw error;
   }
 };
+
+export const axiosPassword = async (
+  previousPassword: string,
+  newPassword: string,
+  newPasswordVerification: string,
+  memberId: string | undefined
+): Promise<any> => {
+  try {
+    const response = await instance.patch(
+      "/member/password",
+      {
+        previousPassword: previousPassword,
+        newPassword: newPassword,
+        newPasswordVerification: newPasswordVerification,
+      },
+      {
+        headers: {
+          memberId: memberId,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
