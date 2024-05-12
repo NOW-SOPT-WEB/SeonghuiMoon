@@ -7,6 +7,7 @@ interface useInputVaildInterface {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   detail: string;
+  setError: React.Dispatch<React.SetStateAction<string>>;
 }
 
 type ValidType = "userId" | "userPw" | "userName" | "userPn";
@@ -65,7 +66,7 @@ function useInputVaild(
     setError(validate(e.target.value));
   };
 
-  return { value, error, detail, handleChange, handleBlur };
+  return { value, error, detail, handleChange, handleBlur, setError };
 }
 
 export default useInputVaild;

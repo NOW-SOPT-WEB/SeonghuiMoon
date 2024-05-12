@@ -9,17 +9,29 @@ import axios from "axios";
 
 const LoginBox = () => {
   const navigate = useNavigate();
+
   const onClickLoginBtn = async () => {
-    try {
-      const response = await axiosLogin(userId, userPw);
-      if (response.data.code === 200) {
-        const headerId = response.headers["location"];
-        alert("로그인이 완료되었습니다.");
-        navigate(`/main/${headerId}`);
+    let hasError = false;
+
+    if (!userId.trim()) {
+      hasError = true;
+      setUserIdError("ID를 입력해주세요");
+    } else if (!userPw.trim()) {
+      hasError = true;
+      setUserPwError("비밀번호를 입력해주세요");
+    }
+    if (!hasError) {
+      try {
+        const response = await axiosLogin(userId, userPw);
+        if (response.data.code === 200) {
+          const headerId = response.headers["location"];
+          alert("로그인이 완료되었습니다.");
+          navigate(`/main/${headerId}`);
+        }
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response)
+          alert(error.response.data.message);
       }
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response)
-        alert(error.response.data.message);
     }
   };
 
@@ -32,6 +44,7 @@ const LoginBox = () => {
     error: userIdError,
     handleChange: handleIdChange,
     handleBlur: handleIdBlur,
+    setError: setUserIdError,
   } = useInputVaild("", "userId");
 
   const {
@@ -39,6 +52,7 @@ const LoginBox = () => {
     error: userPwError,
     handleChange: handlePwChange,
     handleBlur: handlePwBlur,
+    setError: setUserPwError,
   } = useInputVaild("", "userPw");
 
   return (
