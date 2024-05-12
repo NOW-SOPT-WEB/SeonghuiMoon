@@ -3,6 +3,8 @@ import Header from "@/components/header/Header";
 import Button from "@/components/button/Button";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import VideoPlayer from "@/components/video/Video";
+import MaruVideo from "@/assets/videos/maru.mp4";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -17,6 +19,9 @@ const MainPage = () => {
   return (
     <MainPageWrapper>
       <Header />
+      <VidioWrapper>
+        <VideoPlayer src={MaruVideo} />
+      </VidioWrapper>
       <LoginBtnWrapper>
         <Button
           onClick={onClickMypageBtn}
@@ -42,6 +47,11 @@ const MainPageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+`;
+
+const VidioWrapper = styled.div`
+  margin: 4rem;
 `;
 
 const LoginBtnWrapper = styled.div`
