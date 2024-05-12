@@ -6,6 +6,7 @@ import { axiosJoin } from "@/api/axios";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
+import { validatePassword } from "@/utils/validatePassword";
 
 const SignupBox = () => {
   const navigate = useNavigate();
@@ -48,6 +49,13 @@ const SignupBox = () => {
       alert("전화번호를 입력해주세요.");
       hasError = true;
     }
+
+    const passwordError = validatePassword(userPw);
+    if (passwordError) {
+      alert(passwordError);
+      return;
+    }
+
     if (!hasError) {
       try {
         const response = await axiosJoin(userId, userPw, userName, userPn);
