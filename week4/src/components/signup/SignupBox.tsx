@@ -150,13 +150,11 @@ const SignupBox = () => {
           onClick={onClickLoginBtn}
           text="회원가입"
           color="var(--sub-color)"
-          isClicked={false}
         />
         <Button
           onClick={() => navigate(-1)}
           text="뒤로가기"
           color="var(--sub-color)"
-          isClicked={true}
         />
       </LoginBtnWrapper>
     </LoginBoxStyled>

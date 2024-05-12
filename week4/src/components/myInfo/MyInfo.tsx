@@ -61,7 +61,6 @@ const MyInfo = () => {
         onClick={onClickTogglePwChange}
         text={showPwChange ? "비밀번호 변경⏶" : "비밀번호 변경 ⏷"}
         color="var(--main-color)"
-        isClicked={false}
       />
       {showPwChange && <PwChange />}
       <LoginBtnWrapper>
@@ -69,7 +68,6 @@ const MyInfo = () => {
           onClick={onClickSignUpBtn}
           text="홈으로"
           color="var(--sub-color)"
-          isClicked={true}
         />
       </LoginBtnWrapper>
     </LoginBoxStyled>

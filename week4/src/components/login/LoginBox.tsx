@@ -86,13 +86,11 @@ const LoginBox = () => {
           onClick={onClickLoginBtn}
           text="로그인"
           color="var(--sub-color)"
-          isClicked={false}
         />
         <Button
           onClick={onClickSignUpBtn}
           text="회원가입"
           color="var(--sub-color)"
-          isClicked={true}
         />
       </LoginBtnWrapper>
     </LoginBoxStyled>

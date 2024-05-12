@@ -27,13 +27,11 @@ const MainPage = () => {
           onClick={onClickMypageBtn}
           text="내 정보"
           color="var(--sub-color)"
-          isClicked={false}
         />
         <Button
           onClick={onClickSignUpBtn}
           text="회원가입"
           color="var(--sub-color)"
-          isClicked={true}
         />
       </LoginBtnWrapper>
     </MainPageWrapper>

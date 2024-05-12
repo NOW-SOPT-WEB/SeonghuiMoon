@@ -79,7 +79,7 @@ const PwChange = () => {
         onClick={onClickBtn}
         text="비밀번호 변경"
         color="var(--sub-color)"
-        isClicked={false}
+        isClicked={true}
       />
     </PwChangeWrapper>
   );
