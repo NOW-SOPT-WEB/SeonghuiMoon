@@ -9,3 +9,11 @@ export function formatPhoneNumber(phoneNumber: string): string {
 
   return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
 }
+
+export function validatePhoneNumber(phoneNumber: string) {
+  const regex = /^010-\d{4}-\d{4}$/;
+  if (!regex.test(phoneNumber)) {
+    return "전화번호가 형식(010-****-****)에 맞지 않습니다.";
+  }
+  return null;
+}

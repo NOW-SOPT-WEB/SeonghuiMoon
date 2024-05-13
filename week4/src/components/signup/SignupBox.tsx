@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import { validatePassword } from "@/utils/validatePassword";
+import { validatePhoneNumber } from "@/utils/formatPhoneNumber";
 
 const SignupBox = () => {
   const navigate = useNavigate();
@@ -52,6 +53,12 @@ const SignupBox = () => {
     const passwordError = validatePassword(userPw);
     if (passwordError) {
       alert(passwordError);
+      return;
+    }
+
+    const phoneNumberError = validatePhoneNumber(userPn);
+    if (phoneNumberError) {
+      alert(phoneNumberError);
       return;
     }
 
