@@ -10,8 +10,9 @@ interface ApiResponse {
   code: number;
   message: string;
   data?: {
-    userId: number;
-    token: string;
+    authenticationId: string;
+    nickname: string;
+    phone: string;
   };
 }
 

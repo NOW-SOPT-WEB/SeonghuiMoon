@@ -41,21 +41,21 @@ const MyInfo = () => {
   }, [userId]);
 
   return (
-    <LoginBoxStyled>
-      <LoginTitle>마이 페이지</LoginTitle>
+    <MyInfoBoxStyled>
+      <MyInfoTitle>마이 페이지</MyInfoTitle>
       <PwChangeWrapper>
-        <LoginForm>
+        <MyInfoForm>
           <Label htmlFor="userId">ID</Label>
           <BasicInfo>{userInfo.authenticationId}</BasicInfo>
-        </LoginForm>
-        <LoginForm>
+        </MyInfoForm>
+        <MyInfoForm>
           <Label htmlFor="password">닉네임</Label>
           <BasicInfo>{userInfo.nickname}</BasicInfo>
-        </LoginForm>
-        <LoginForm>
+        </MyInfoForm>
+        <MyInfoForm>
           <Label htmlFor="userId">전화번호</Label>
           <BasicInfo>{userInfo.phone}</BasicInfo>
-        </LoginForm>
+        </MyInfoForm>
       </PwChangeWrapper>
       <Button
         onClick={onClickTogglePwChange}
@@ -63,18 +63,18 @@ const MyInfo = () => {
         color="var(--main-color)"
       />
       {showPwChange && <PwChange />}
-      <LoginBtnWrapper>
+      <MyInfoBtnWrapper>
         <Button
           onClick={onClickSignUpBtn}
           text="홈으로"
           color="var(--sub-color)"
         />
-      </LoginBtnWrapper>
-    </LoginBoxStyled>
+      </MyInfoBtnWrapper>
+    </MyInfoBoxStyled>
   );
 };
 
-const LoginBoxStyled = styled.div`
+const MyInfoBoxStyled = styled.div`
   width: 18rem;
   height: 38rem;
   background-color: ${({ theme }) => theme.colors.main_color};
@@ -86,7 +86,7 @@ const LoginBoxStyled = styled.div`
   padding: 0 4rem;
 `;
 
-const LoginTitle = styled.div`
+const MyInfoTitle = styled.div`
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 0.2rem;
@@ -99,13 +99,13 @@ const PwChangeWrapper = styled.div`
   align-items: stretch;
 `;
 
-const LoginBtnWrapper = styled.div`
+const MyInfoBtnWrapper = styled.div`
   width: 80%;
   display: flex;
   justify-content: space-evenly;
 `;
 
-const LoginForm = styled.form`
+const MyInfoForm = styled.form`
   display: flex;
   align-items: center;
   justify-content: space-between;
