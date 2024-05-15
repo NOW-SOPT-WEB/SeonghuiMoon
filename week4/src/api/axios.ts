@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const API_URL = `${import.meta.env.VITE_BASE_URL}`;
 
@@ -6,12 +6,21 @@ const instance = axios.create({
   baseURL: API_URL,
 });
 
+interface ApiResponse {
+  code: number;
+  message: string;
+  data?: {
+    userId: number;
+    token: string;
+  };
+}
+
 export const axiosLogin = async (
   authenticationId: string,
   password: string
-): Promise<any> => {
+): Promise<ApiResponse> => {
   try {
-    const response = await instance.post("/member/login", {
+    const response = (await instance.post)<ApiResponse>("/member/login", {
       authenticationId,
       password,
     });
@@ -26,9 +35,9 @@ export const axiosJoin = async (
   password: string,
   nickname: string,
   phone: string
-): Promise<any> => {
+): Promise<AxiosResponse<ApiResponse>> => {
   try {
-    const response = await instance.post("/member/join", {
+    const response = await instance.post<ApiResponse>("/member/join", {
       authenticationId,
       password,
       nickname,
@@ -40,9 +49,11 @@ export const axiosJoin = async (
   }
 };
 
-export const axiosInfo = async (memberId: string | undefined): Promise<any> => {
+export const axiosInfo = async (
+  memberId: string | undefined
+): Promise<ApiResponse> => {
   try {
-    const response = await instance.get("/member/info", {
+    const response = await instance.get<ApiResponse>("/member/info", {
       headers: {
         memberId: memberId,
       },
@@ -58,9 +69,9 @@ export const axiosPassword = async (
   newPassword: string,
   newPasswordVerification: string,
   memberId: string | undefined
-): Promise<any> => {
+): Promise<ApiResponse> => {
   try {
-    const response = await instance.patch(
+    const response = await instance.patch<ApiResponse>(
       "/member/password",
       {
         previousPassword: previousPassword,

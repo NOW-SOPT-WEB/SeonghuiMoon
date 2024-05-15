@@ -64,11 +64,9 @@ const SignupBox = () => {
 
     try {
       const response = await axiosJoin(userId, userPw, userName, userPn);
-      if (response.data.code === 201) {
-        const headerId = response.headers["location"];
-        alert("회원가입이 완료되었습니다.");
-        navigate(`/main/${headerId}`);
-      }
+      const headerId = response.headers["location"];
+      alert("회원가입이 완료되었습니다.");
+      navigate(`/main/${headerId}`);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response)
         alert(error.response.data.message);
