@@ -53,9 +53,7 @@ export const axiosJoin = async (
   }
 };
 
-export const axiosInfo = async (
-  memberId: string | undefined
-): Promise<ApiResponse> => {
+export const axiosInfo = async (memberId: string): Promise<ApiResponse> => {
   try {
     const response = await instance.get<ApiResponse>("/member/info", {
       headers: {
@@ -72,7 +70,7 @@ export const axiosPassword = async (
   previousPassword: string,
   newPassword: string,
   newPasswordVerification: string,
-  memberId: string | undefined
+  memberId: string
 ): Promise<ApiResponse> => {
   try {
     const response = await instance.patch<ApiResponse>(

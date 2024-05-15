@@ -24,13 +24,15 @@ const MyInfo = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axiosInfo(userId);
-        if (response.data) {
-          setUserInfo({
-            authenticationId: response.data.authenticationId,
-            nickname: response.data.nickname,
-            phone: response.data.phone,
-          });
+        if (userId) {
+          const response = await axiosInfo(userId);
+          if (response.data) {
+            setUserInfo({
+              authenticationId: response.data.authenticationId,
+              nickname: response.data.nickname,
+              phone: response.data.phone,
+            });
+          }
         }
       } catch (error) {
         console.error(error);

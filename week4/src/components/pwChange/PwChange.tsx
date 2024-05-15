@@ -30,15 +30,17 @@ const PwChange = () => {
       return;
     }
     try {
-      const response = await axiosPassword(
-        previousPassword,
-        newPassword,
-        newPasswordVerification,
-        userId
-      );
-      if (response.code === 200) {
-        alert("비밀번호 변경이 완료되었습니다.");
-        navigate("/");
+      if (userId) {
+        const response = await axiosPassword(
+          previousPassword,
+          newPassword,
+          newPasswordVerification,
+          userId
+        );
+        if (response.code === 200) {
+          alert("비밀번호 변경이 완료되었습니다.");
+          navigate("/");
+        }
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response)
