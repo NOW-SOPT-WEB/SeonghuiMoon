@@ -12,11 +12,8 @@ interface useInputVaildInterface {
 
 type ValidType = "userId" | "userPw" | "userName" | "userPn";
 
-function useInputVaild(
-  initialValue: string,
-  type: ValidType
-): useInputVaildInterface {
-  const [value, setValue] = useState(initialValue);
+function useInputVaild(type: ValidType): useInputVaildInterface {
+  const [value, setValue] = useState("");
   const [error, setError] = useState("");
 
   const validate = useCallback(

@@ -19,12 +19,15 @@ interface ApiResponse {
 export const axiosLogin = async (
   authenticationId: string,
   password: string
-): Promise<ApiResponse> => {
+): Promise<AxiosResponse<ApiResponse>> => {
   try {
-    const response = (await instance.post)<ApiResponse>("/member/login", {
-      authenticationId,
-      password,
-    });
+    const response = (await instance.post)<AxiosResponse<ApiResponse>>(
+      "/member/login",
+      {
+        authenticationId,
+        password,
+      }
+    );
     return response;
   } catch (error) {
     throw error;

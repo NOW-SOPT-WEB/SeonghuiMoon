@@ -23,7 +23,7 @@ const LoginBox = () => {
     if (!hasError) {
       try {
         const response = await axiosLogin(userId, userPw);
-        if (response.data.code === 200) {
+        if (response.data && response.data.code === 200) {
           const headerId = response.headers["location"];
           alert("로그인이 완료되었습니다.");
           navigate(`/main/${headerId}`);
@@ -45,7 +45,7 @@ const LoginBox = () => {
     handleChange: handleIdChange,
     handleBlur: handleIdBlur,
     setError: setUserIdError,
-  } = useInputVaild("", "userId");
+  } = useInputVaild("userId");
 
   const {
     value: userPw,
@@ -53,7 +53,7 @@ const LoginBox = () => {
     handleChange: handlePwChange,
     handleBlur: handlePwBlur,
     setError: setUserPwError,
-  } = useInputVaild("", "userPw");
+  } = useInputVaild("userPw");
 
   return (
     <LoginBoxStyled>

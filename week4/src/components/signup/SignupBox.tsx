@@ -77,27 +77,27 @@ const SignupBox = () => {
     value: userId,
     handleChange: handleIdChange,
     handleBlur: handleIdBlur,
-  } = useInputVaild("", "userId");
+  } = useInputVaild("userId");
 
   const {
     value: userPw,
     detail: userPwDetail,
     handleChange: handlePwChange,
     handleBlur: handlePwBlur,
-  } = useInputVaild("", "userPw");
+  } = useInputVaild("userPw");
 
   const {
     value: userName,
     handleChange: handleNameChange,
     handleBlur: handleNameBlur,
-  } = useInputVaild("", "userName");
+  } = useInputVaild("userName");
 
   const {
     value: userPn,
     detail: userPnDetail,
     handleChange: handlePnChange,
     handleBlur: handlePnBlur,
-  } = useInputVaild("", "userPn");
+  } = useInputVaild("userPn");
 
   return (
     <LoginBoxStyled>
