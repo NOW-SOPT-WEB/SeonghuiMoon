@@ -20,18 +20,11 @@ export const axiosLogin = async (
   authenticationId: string,
   password: string
 ): Promise<AxiosResponse<ApiResponse>> => {
-  try {
-    const response = (await instance.post)<AxiosResponse<ApiResponse>>(
-      "/member/login",
-      {
-        authenticationId,
-        password,
-      }
-    );
-    return response;
-  } catch (error) {
-    throw error;
-  }
+  const response = await instance.post<ApiResponse>("/member/login", {
+    authenticationId,
+    password,
+  });
+  return response;
 };
 
 export const axiosJoin = async (
@@ -40,30 +33,22 @@ export const axiosJoin = async (
   nickname: string,
   phone: string
 ): Promise<AxiosResponse<ApiResponse>> => {
-  try {
-    const response = await instance.post<ApiResponse>("/member/join", {
-      authenticationId,
-      password,
-      nickname,
-      phone,
-    });
-    return response;
-  } catch (error) {
-    throw error;
-  }
+  const response = await instance.post<ApiResponse>("/member/join", {
+    authenticationId,
+    password,
+    nickname,
+    phone,
+  });
+  return response;
 };
 
 export const axiosInfo = async (memberId: string): Promise<ApiResponse> => {
-  try {
-    const response = await instance.get<ApiResponse>("/member/info", {
-      headers: {
-        memberId: memberId,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await instance.get<ApiResponse>("/member/info", {
+    headers: {
+      memberId: memberId,
+    },
+  });
+  return response.data;
 };
 
 export const axiosPassword = async (
@@ -72,22 +57,18 @@ export const axiosPassword = async (
   newPasswordVerification: string,
   memberId: string
 ): Promise<ApiResponse> => {
-  try {
-    const response = await instance.patch<ApiResponse>(
-      "/member/password",
-      {
-        previousPassword: previousPassword,
-        newPassword: newPassword,
-        newPasswordVerification: newPasswordVerification,
+  const response = await instance.patch<ApiResponse>(
+    "/member/password",
+    {
+      previousPassword: previousPassword,
+      newPassword: newPassword,
+      newPasswordVerification: newPasswordVerification,
+    },
+    {
+      headers: {
+        memberId: memberId,
       },
-      {
-        headers: {
-          memberId: memberId,
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+    }
+  );
+  return response.data;
 };
